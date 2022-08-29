@@ -1,0 +1,5 @@
+{
+    "MONGO_URI_SERVER": "URL ATLAS",
+    "MONGO_URI_LOCAL": "mongodb://localhost:27017/"
+    
+}
