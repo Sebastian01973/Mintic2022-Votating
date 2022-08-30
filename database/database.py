@@ -14,6 +14,7 @@ def datadabe_connection():
         #Conection to Atlas
         client = MongoClient(dataConfig['MONGO_URI_SERVER'], tlsCAFile=ca)
         #Conection local
+        #client = MongoClient(dataConfig['MONGO_URI_LOCAL'], dataConfig['MONGO_PORT'])
         db = client['proyecto_ciclo4']
     except ConnectionError:
         print("Error conection to DB")
