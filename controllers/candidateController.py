@@ -1,0 +1,1 @@
+from repositories.candidateRepository import CandidateRepository
