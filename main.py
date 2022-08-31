@@ -27,7 +27,7 @@ def get_political_partys():
 
 #Metodo para mostrar un partido en especifico
 @app.route("/politicalParty/<string:id>", methods=['GET'])
-def get_political_party():
+def get_political_party(id):
     json = myControllerPoliticalparty.show(id)
     return jsonify(json)
 
@@ -40,20 +40,16 @@ def create_political_party():
 
 #Metodo para modificar un partido
 @app.route("/politicalParty/<string:id>", methods=['PUT'])
-def update_political_party():
+def update_political_party(id):
     data = request.get_json()
     json = myControllerPoliticalparty.update(id,data)
     return jsonify(json)
 
 #Metodo para eliminar un partido
 @app.route("/politicalParty/<string:id>", methods=['DELETE'])
-def delete_political_party():
+def delete_political_party(id):
     json = myControllerPoliticalparty.delete(id)
     return jsonify(json)
-
-
-
-
 
 
 
