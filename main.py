@@ -6,6 +6,7 @@ from controllers.boardController import BoardController
 from controllers.politicalPartyController import PoliticalPartyController
 from controllers.candidateController import CandidateController
 from controllers.boardController import BoardController
+from controllers.resultController import ResultController
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -13,6 +14,7 @@ cors = CORS(app)
 myControllerPoliticalparty = PoliticalPartyController()
 myControllercandidate = CandidateController()
 myControllerBoard = BoardController()
+myControllerResult = ResultController()
 
 @app.route("/", methods=["GET"])
 def test():
@@ -142,7 +144,34 @@ def delete_board(id):
 #OBTENER TODOS LOS RESULTADOS  
 @app.route("/results", methods=['GET'])
 def get_results():
-    json = "To do..."
+    json = myControllerResult.index()
+    return jsonify(json)
+
+#OBTENER UN RESULTADO EN ESPECIFICO
+@app.route("/results/<string:id>", methods=['GET'])
+def get_result(id):
+    json = myControllerResult.show(id)
+    return jsonify(json)
+
+#agregar un resultado en una mesa
+@app.route("/results/board/<string:id_board>/candidate/<string:id_candidate>", methods=['POST'])
+def create_result(id_board,id_candidate):
+    data = request.get_json()
+    json = myControllerResult.create(data,id_board,id_candidate)
+    return jsonify(json)
+
+#actualizar un resultado
+@app.route("/results/<string:id_result>/board/<string:id_board>/candidate/<string:id_candidate>",methods=['PUT'])
+def update_result(id_result,id_board,id_candidate):
+    data = request.get_json()
+    json = myControllerResult.update(id_result,data,id_board,id_candidate)
+    return jsonify(json)
+
+#Eliminar un resultado
+@app.route("/results/<string:id>", methods=['DELETE'])
+def delete_result(id):
+    json = myControllerResult.delete(id)
+    return jsonify(json)
 
 
 #####################################################
