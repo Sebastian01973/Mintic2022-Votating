@@ -1,15 +1,18 @@
 from flask import Flask, request, Response, jsonify
 from flask_cors import CORS
 import json
+from controllers.boardController import BoardController
 
 from controllers.politicalPartyController import PoliticalPartyController
 from controllers.candidateController import CandidateController
+from controllers.boardController import BoardController
 
 app = Flask(__name__)
 cors = CORS(app)
 
 myControllerPoliticalparty = PoliticalPartyController()
 myControllercandidate = CandidateController()
+myControllerBoard = BoardController()
 
 @app.route("/", methods=["GET"])
 def test():
@@ -96,6 +99,55 @@ def assign_party_to_candidate(id_candidate,id_politicalParty):
     json = myControllercandidate.assign_political_party(id_candidate,id_politicalParty)
     return jsonify(json)
 
+################################################
+#           ENDPOINT  DE LA MESA               #
+################################################
+
+#Metodo para listar todos las mesas 
+@app.route("/boards",methods=['GET'])
+def get_boards():
+    json = myControllerBoard.index()
+    return jsonify(json)
+
+#Metodo para crear una mesa 
+@app.route("/boards",methods=['POST'])
+def create_board():
+    data = request.get_json()
+    json = myControllerBoard.create(data)
+    return jsonify(json)
+
+#Metodo para buscar una mesa por el ID
+@app.route("/boards/<string:id>",methods=['GET'])
+def get_board(id):
+    json = myControllerBoard.show(id)
+    return jsonify(json)
+
+#Metodo para actualizar una mesa por el ID
+@app.route("/boards/<string:id>",methods=['PUT'])
+def update_board(id):
+    data = request.get_json()
+    json = myControllerBoard.update(id,data)
+    return jsonify(json)
+
+#Metodo para eliminar una mesa por el ID
+@app.route("/boards/<string:id>",methods=['DELETE'])
+def delete_board(id):
+    json = myControllerBoard.delete(id)
+    return jsonify(json)
+
+#####################################################
+##            ENDPOINTS DE RESULTADOS              ##
+#####################################################
+
+#OBTENER TODOS LOS RESULTADOS  
+@app.route("/results", methods=['GET'])
+def get_results():
+    json = "To do..."
+
+
+#####################################################
+##                     EJECUTABLE                  ##
+#####################################################
 if __name__ == "__main__":
     app.run(debug=True, port=4000)
 

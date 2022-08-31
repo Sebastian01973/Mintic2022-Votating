@@ -40,8 +40,8 @@ class CandidateController():
     #Metodo para asignarle un partido a un candidato por el ID del partido y del candidato
     def assign_political_party(self, id, id_politicalParty):
         currentcandidate = Candidate(self.candidateRepository.find_by_id(id))
-        currentPoliticalParty = PoliticalParty(self.politicalPartyRepository.find_by_id(id))
-        currentPoliticalParty.politicalParty = currentPoliticalParty
+        currentPoliticalParty = PoliticalParty(self.politicalPartyRepository.find_by_id(id_politicalParty))
+        currentcandidate.politicalParty = currentPoliticalParty
         return self.candidateRepository.save(currentcandidate)
 
     
