@@ -173,6 +173,28 @@ def delete_result(id):
     json = myControllerResult.delete(id)
     return jsonify(json)
 
+################################################
+#         ENDPOINT  DE LOS REPORTES            #
+################################################
+
+#Inscritos total en una mesa
+@app.route("/reports/boards/<string:id_board>",methods=['GET'])
+def sign_up_boards(id_board):
+    json = myControllerResult.get_list_candidate_signUp_board(id_board)
+    return jsonify(json)
+
+#Obtener las mesas en las que esta inscrito un candidato
+@app.route("/reports/candidate/<string:id_candidate>",methods=['GET'])
+def sign_up_boards_candidate(id_candidate):
+    json = myControllerResult.get_list_board_signUp_candidate(id_candidate)
+    return jsonify(json)
+
+#Devuelve el numero de cédula mayor
+@app.route("/reports/newIdentification",methods=['GET'])
+def get_new_identification():
+    json = myControllerResult.get_new_identification()
+    return jsonify(json)
+
 
 #####################################################
 ##                     EJECUTABLE                  ##

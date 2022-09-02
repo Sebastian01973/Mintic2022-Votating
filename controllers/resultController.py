@@ -48,6 +48,23 @@ class ResultController():
     def delete(self, id):
         return self.resultRepository.delete(id)
     
+    #Obtener todos los candidatos inscritos en una mesa
+    def get_list_candidate_signUp_board(self,id_board):
+        return self.resultRepository.get_list_candidate_signUp_board(id_board)
+    
+    #Obtener las mesas en las que esta inscrito un candidato
+    def get_list_board_signUp_candidate(self,id_candidate):
+        return self.resultRepository.get_list_candidate_signUp_board(id_candidate)
+    
+    #Obtener el candidato con mayor cédula
+    def get_new_identification(self):
+        return self.resultRepository.get_new_identification()
+    
+    #Metodo para encontrar la mesa y el partido
+    def findBy_board_and_party(self, id_board, id_party):
+        return self.resultRepository.findBy_board_and_party(id_board,id_party)
+    
+    
     
 
 
