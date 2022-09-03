@@ -195,6 +195,11 @@ def get_new_identification():
     json = myControllerResult.get_new_identification()
     return jsonify(json)
 
+ #Metodo para encontrar la mesa y el partido
+@app.route("/reports/board/<string:id_board>/political/<string:id_party>",methods=['GET'])
+def findBy_board_and_party(id_board, id_party):
+    json = myControllerResult.findBy_board_and_party(id_board,id_party)
+    return jsonify(json)
 
 #####################################################
 ##                     EJECUTABLE                  ##
