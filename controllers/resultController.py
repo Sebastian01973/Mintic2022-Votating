@@ -54,7 +54,7 @@ class ResultController():
     
     #Obtener las mesas en las que esta inscrito un candidato
     def get_list_board_signUp_candidate(self,id_candidate):
-        return self.resultRepository.get_list_candidate_signUp_board(id_candidate)
+        return self.resultRepository.get_list_board_signUp_candidate(id_candidate)
     
     #Obtener el candidato con mayor cédula
     def get_new_identification(self):
